@@ -13,12 +13,21 @@ This is a SOEN-6841 Project for the the Tam Jambo.
 6. Samaneh Shirdel--------------------------40075615
 
 
-### How to run the project.
+### Getting started.
 1. Install Nodejs
-1. Install npm
+2. Install npm
 ~~~
 cd api-gateway
 npm i
+~~~
+
+### Run the Tests.
+~~~
+npm test
+~~~
+
+### Run the Project.
+~~~
 npm start
 curl http://127.0.0.1:3000
 ~~~
