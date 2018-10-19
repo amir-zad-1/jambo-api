@@ -5,12 +5,12 @@
 This is a SOEN-6841 Project for the the Tam Jambo.
 
 ###### Team Members
-1. Amir Mohsen Hossein Zadeh-------40039878
-2. Alejandro Bernal----------------40043742
+1. Amir Mohsen Hossein Zadeh-----------40039878
+2. Alejandro Bernal--------------------------40043742
 3. Mohamad Jafar Mohamadi Noudeh---40041319
-4. Mahsa Alsadat Ghoreishi---------40056928
-5. Valeriu Caramanuta--------------27737467
-6. Samaneh Shirdel-----------------40075615
+4. Mahsa Alsadat Ghoreishi----------------40056928
+5. Valeriu Caramanuta----------------------27737467
+6. Samaneh Shirdel--------------------------40075615
 
 
 ### How to run the project.
