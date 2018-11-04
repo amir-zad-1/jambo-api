@@ -28,8 +28,8 @@ public class AppInitializer implements WebApplicationInitializer {
         ctx.setServletContext(servletContext);
         Dynamic dynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
         dynamic.addMapping("/");
-        dynamic.setLoadOnStartup(1);
-
+       // dynamic.setLoadOnStartup(1);
+//
 //        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
 //        appContext.register(edu.ordering.config.AppConfig.class);
 //
