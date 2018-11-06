@@ -1,0 +1,16 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "Volcano RESTApi Test App",
+  "main": "integrationTests.js",
+  "scripts": {
+    "test": "node integreationTest.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
