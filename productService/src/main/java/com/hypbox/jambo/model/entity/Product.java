@@ -10,6 +10,9 @@ public class Product extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
+    private String desctiption;
+    private String imageUrl;
+    private Double price;
 
     public Long getId() {
         return id;
@@ -25,6 +28,30 @@ public class Product extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDesctiption() {
+        return desctiption;
+    }
+
+    public void setDesctiption(String desctiption) {
+        this.desctiption = desctiption;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
 }

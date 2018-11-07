@@ -12,7 +12,7 @@ public class ProductController {
     @GetMapping("")
     @ResponseBody
     public HomeDto getHome() {
-        HomeDto response = new HomeDto("Volcano RESTful API 0.1.0");
+        HomeDto response = new HomeDto("Product Service RESTful API 0.1.0");
         return response;
     }
 
