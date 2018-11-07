@@ -1,19 +1,41 @@
 package com.hypbox.jambo.controller;
 
-import com.hypbox.jambo.model.dto.HomeDto;
+import com.hypbox.jambo.model.dto.ProductPersistedDto;
+import com.hypbox.jambo.model.entity.Product;
 import com.hypbox.jambo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("/products/")
 public class ProductController {
 
-    @GetMapping("")
+    @Autowired
+    private ProductService productService;
+
+
     @ResponseBody
-    public HomeDto getHome() {
-        HomeDto response = new HomeDto("Product Service RESTful API 0.1.0");
-        return response;
+    @GetMapping("")
+    public List<ProductPersistedDto> getAll() {
+        List<Product> reservationList = productService.getAll();
+        return reservationList.stream()
+                .map(ProductPersistedDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @ResponseBody
+    @GetMapping("/{productid}")
+    public ProductPersistedDto getById(@PathVariable("productid") long productid) {
+        try {
+            Product findProduct = this.productService.getById(productid);
+            return new ProductPersistedDto(findProduct);
+        } catch (EntityNotFoundException e) {
+            throw new Http404Exception();
+        }
     }
 
 }
