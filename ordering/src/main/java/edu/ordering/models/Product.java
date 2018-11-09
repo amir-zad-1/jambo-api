@@ -30,6 +30,8 @@ public class Product {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	
+	public static boolean isValid(Product product) {
+		return product.getId() > 0 && product.getPrice() >= 0.0 && product.getQuantity()>=0;
+	}
 
 }

@@ -2,6 +2,7 @@ package edu.ordering.controllers;
 
 import edu.ordering.models.Order;
 import edu.ordering.models.Product;
+import edu.ordering.service.OrderService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/orders")
 public class OrdersController {
 
-
+	OrderService orderService;
     //@GetMapping("/order")
    @RequestMapping(value="/order",method = RequestMethod.GET,produces = {"application/json"})
     public Order getOrder(@RequestParam(value = "id",required = false,
@@ -42,9 +43,13 @@ public class OrdersController {
         return "login";
     }
     @RequestMapping(value="/addProduct",method = RequestMethod.POST,produces = {"application/json"})
-    public void addProductToOrder(@RequestBody long idOrder, long idProduct, long quantity, float price) {
+    public Order addProductToOrder(@RequestBody long idOrder, long idProduct, long quantity, float price) {
     	Product product = new Product(idProduct, quantity, price);
-    	
+    	Order order = this.orderService.getOrderById(idOrder);
+    	if(order != null) {
+    		this.orderService.addProduct(order, product);
+    	}
+    	return order;
     }
 
 }

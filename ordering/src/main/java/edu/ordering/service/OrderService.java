@@ -24,7 +24,7 @@ public class OrderService {
 		}
 	}
 	public Order addProduct(Order order,Product product) {
-		if(this.isValid(order) && this.isValidProduct(product)) {
+		if(this.isValid(order) && Product.isValid(product)) {
 			order.addProduct(product);
 			return order;
 		}else {
@@ -45,8 +45,5 @@ public class OrderService {
 	}
 	private boolean isValid(Order order) {
 		return order.getId() > 0;
-	}
-	private boolean isValidProduct(Product product) {
-		return product.getId() > 0 && product.getPrice() >= 0.0 && product.getQuantity()>=0;
 	}
 }
