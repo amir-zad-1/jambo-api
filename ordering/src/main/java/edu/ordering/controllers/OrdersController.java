@@ -1,6 +1,7 @@
 package edu.ordering.controllers;
 
 import edu.ordering.models.Order;
+import edu.ordering.models.Product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,10 @@ public class OrdersController {
 
 
     //@GetMapping("/order")
-   @RequestMapping("/order")
+   @RequestMapping(value="/order",method = RequestMethod.GET,produces = {"application/json"})
     public Order getOrder(@RequestParam(value = "id",required = false,
-            defaultValue = "0") Integer id) {
-        Order p = new Order(1,"oder");
+            defaultValue = "0") long id) {
+        Order p = new Order(1,"order");
         return p;
     }
 
@@ -40,6 +41,10 @@ public class OrdersController {
         m.addAttribute("someAttribute", "someValue");
         return "login";
     }
-
+    @RequestMapping(value="/addProduct",method = RequestMethod.POST,produces = {"application/json"})
+    public void addProductToOrder(@RequestBody long idOrder, long idProduct, long quantity, float price) {
+    	Product product = new Product(idProduct, quantity, price);
+    	
+    }
 
 }
