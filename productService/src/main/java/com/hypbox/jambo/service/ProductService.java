@@ -30,6 +30,7 @@ public class ProductService {
     }
 
     public Product update(Product newProduct) {
+        if (!this.isValid(newProduct)) return null;
         Product oldProduct = this.productRepository.getOne(newProduct.getId());
         if (oldProduct == null) return null;
         this.productRepository.save(newProduct);

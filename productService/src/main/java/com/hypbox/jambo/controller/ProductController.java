@@ -1,6 +1,7 @@
 package com.hypbox.jambo.controller;
 
 import com.hypbox.jambo.model.dto.ProductCreateDto;
+import com.hypbox.jambo.model.dto.ProductDeleteResponse;
 import com.hypbox.jambo.model.dto.ProductPersistedDto;
 import com.hypbox.jambo.model.entity.Product;
 import com.hypbox.jambo.service.ProductService;
@@ -51,6 +52,30 @@ public class ProductController {
             throw new Http400Exception(e.getMessage());
         }
         return new ProductPersistedDto(product);
+    }
+
+    @ResponseBody
+    @PutMapping("")
+    public ProductPersistedDto updateProduct(@Valid @RequestBody ProductPersistedDto productPersistedDto) {
+        Product product;
+        try {
+            product = productPersistedDto.toProduct();
+            this.productService.update(product);
+        } catch (NotValidException | NotAvailableException e) {
+            throw new Http400Exception(e.getMessage());
+        }
+        return new ProductPersistedDto(product);
+    }
+
+    @ResponseBody
+    @DeleteMapping("/{productid}")
+    public ProductDeleteResponse cancel(@PathVariable("productid") long productid) {
+        try {
+            Boolean result = this.productService.delete(productid);
+            return new ProductDeleteResponse(result);
+        } catch (EntityNotFoundException e) {
+            throw new Http404Exception();
+        }
     }
 
 }
