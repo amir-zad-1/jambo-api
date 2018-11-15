@@ -60,6 +60,7 @@ public class ProductService {
         if (title == null && title.trim().isEmpty())
             return result;
 
+
         result = this.productRepository.getByTitleContainingIgnoreCase(title);
         return result;
     }
