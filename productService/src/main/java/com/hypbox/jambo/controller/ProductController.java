@@ -29,6 +29,17 @@ public class ProductController {
                 .map(ProductPersistedDto::new)
                 .collect(Collectors.toList());
     }
+   
+   
+
+    @ResponseBody
+    @GetMapping("/searchByTitle/{title}")
+    public List<ProductPersistedDto> searchByTitle(@PathVariable("title") String title) {
+        List<Product> lstProducts = productService.searchByTitle(title);
+        return lstProducts.stream()
+                .map(ProductPersistedDto::new)
+                .collect(Collectors.toList());
+    }
 
     @ResponseBody
     @GetMapping("/{productid}")
@@ -40,6 +51,8 @@ public class ProductController {
             throw new Http404Exception();
         }
     }
+   
+   
 
     @ResponseBody
     @PostMapping("")
@@ -79,3 +92,4 @@ public class ProductController {
     }
 
 }
+
