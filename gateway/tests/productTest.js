@@ -90,6 +90,22 @@ describe("Product service", () => {
             });
         });
 
+        it("product list should return a list containing 1 product", done => {
+            chai.request(API_PRODUCT_SERVICE_ENDPOINT).get("/searchByTitle/sample product").end((error, response) => {
+                if (error) done(error);
+                assert.equal(response.body.length, 1);
+                done();
+            });
+        });
+
+        it("product list should return a list containing 1 product", done => {
+            chai.request(API_PRODUCT_SERVICE_ENDPOINT).get("/searchByTitle/notExistsprduct").end((error, response) => {
+                if (error) done(error);
+                assert.equal(response.body.length, 0);
+                done();
+            });
+        });
+
         it("the price of added product should be " + productData.price, done => {
             assert.equal(newProduct.price, productData.price);
             done();
@@ -122,3 +138,5 @@ describe("Product service", () => {
     });
 
 });
+
+	
