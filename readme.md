@@ -12,13 +12,14 @@ This is a SOEN-6841 Project for the the Tam Jambo.
 5. Valeriu Caramanuta
 6. Samaneh Shirdel
 
-Run Integration Tests
+##### Run Integration Tests
 Note: Requires node.js to be installed.
-
+~~~~
  cd [root directory of repository]/productService/
  mvn spring-boot:run&
  cd ../gateway
  npm i
  mocha tests
+~~~~
 
 ![Test Results](/screenshots/productServiceTests.png?raw=true "Product Service Test Results")
