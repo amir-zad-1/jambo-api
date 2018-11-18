@@ -8,14 +8,18 @@ public class ProductCreateDto {
     private String title;
     private String description;
     private String imageUrl;
+    private String supplierUrl;
     private Double price;
 
     public ProductCreateDto(Product product) {
-        this.description = product.getDesctiption();
+        this.description = product.getDescription();
         this.title = product.getTitle();
         this.imageUrl = product.getImageUrl();
         this.price = product.getPrice();
+        this.supplierUrl = product.getSupplierUrl();
     }
+
+    public ProductCreateDto() {}
 
     public String getTitle() {
         return title;
@@ -49,4 +53,22 @@ public class ProductCreateDto {
         this.price = price;
     }
 
+    public String getSupplierUrl() {
+        return supplierUrl;
+    }
+
+    public void setSupplierUrl(String supplierUrl) {
+        this.supplierUrl = supplierUrl;
+    }
+
+    public Product toProduct() {
+        Product product = new Product();
+        product.setSupplierUrl(this.getSupplierUrl());
+        product.setTitle(this.getTitle());
+        product.setDescription(this.getDescription());
+        product.setImageUrl(this.getImageUrl());
+        product.setPrice(this.getPrice());
+        product.setSupplierUrl(this.getSupplierUrl());
+        return product;
+    }
 }

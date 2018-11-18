@@ -30,6 +30,7 @@ public class ProductService {
     }
 
     public Product update(Product newProduct) {
+        if (!this.isValid(newProduct)) return null;
         Product oldProduct = this.productRepository.getOne(newProduct.getId());
         if (oldProduct == null) return null;
         this.productRepository.save(newProduct);
@@ -65,11 +66,12 @@ public class ProductService {
 
     public void initialize() {
         Product p1 = new Product();
-        p1.setTitle("Product 1");
-        p1.setDesctiption("Product 1 Description");
-        p1.setPrice(12.00);
-        p1.setImageUrl("http://www.image.com/");
-        this.productRepository.save(p1);
+        p1.setTitle("Seiko 43mm Men's Chronograph Casual Watch");
+        p1.setDescription("This Seiko's SKS633P1 chronograph watch bridges the gap between dressy and sporty, making it ideal for everyday wear.");
+        p1.setPrice(129.99);
+        p1.setImageUrl("https://multimedia.bbycastatic.ca/multimedia/products/1500x1500/128/12872/12872862.jpg");
+        p1.setSupplierUrl("https://www.bestbuy.ca/en-ca/product/seiko-43mm-men-s-chronograph-casual-watch-hard-coated-silver-black/12872862.aspx?");
+        this.add(p1);
     }
 
 }

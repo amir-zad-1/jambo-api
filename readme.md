@@ -4,7 +4,7 @@
 
 This is a SOEN-6841 Project for the the Tam Jambo.
 
-###### Team Members
+#### Team Members
 1. Amir Mohsen Hossein Zadeh
 2. Alejandro Bernal
 3. Mohamad Jafar Mohamadi Noudeh
@@ -12,3 +12,23 @@ This is a SOEN-6841 Project for the the Tam Jambo.
 5. Valeriu Caramanuta
 6. Samaneh Shirdel
 
+#### Run Integration Tests
+Note: Requires node.js to be installed.
+
+#### 1. Run the Product Service
+~~~~
+ cd [root directory of repository]/productService/
+ mvn spring-boot:run&
+~~~~
+
+#### 2. Run the Ordering Service
+Not Specified yet.
+
+#### 3. Run the code below
+~~~~
+ cd [root directory of repository]/gateway/
+ npm i
+ mocha tests
+~~~~
+
+![Test Results](/screenshots/productServiceTests.png?raw=true "Product Service Test Results")
