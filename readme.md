@@ -31,4 +31,11 @@ Not Specified yet.
  mocha tests
 ~~~~
 
+#### 4. Run the front end client
+~~~~
+ cd [root directory of repository]/client/
+ npm start
+~~~~
+
+
 ![Test Results](/screenshots/productServiceTests.png?raw=true "Product Service Test Results")
