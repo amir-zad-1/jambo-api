@@ -5,7 +5,7 @@ import AppNavbar from './AppNavbar';
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 
-class OrderShow extends Component {
+class ProductShow extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
@@ -33,7 +33,7 @@ class OrderShow extends Component {
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             try {
-                const group = await (await fetch(`/orders/${this.props.match.params.id}`)).json();
+                const group = await (await fetch(`/products/${this.props.match.params.id}`)).json();
                 this.setState({item: group});
             } catch (error) {
                 this.props.history.push('/');
@@ -85,4 +85,4 @@ class OrderShow extends Component {
     }
 }
 
-export default withCookies(withRouter(OrderShow));
+export default withCookies(withRouter(ProductShow));
