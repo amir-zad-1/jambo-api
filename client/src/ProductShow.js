@@ -69,7 +69,7 @@ class ProductShow extends Component {
 
     render() {
         const {item} = this.state;
-        const title = <h2>Product # {item.id}</h2>;
+        const title = <h2>{item.title}</h2>;
 
         return <div>
             <AppNavbar/>
@@ -81,7 +81,10 @@ class ProductShow extends Component {
 
                     <div className={"col-md-6"}>
                         {title}
-                        <br/>
+
+                        <p className={'lead font-weight-bold' }>
+                            Description
+                        </p>
                         <p>
                             {item.description}
                         </p>
@@ -89,11 +92,15 @@ class ProductShow extends Component {
 
                         </p>
 
-                        <p>
-                            {item.price}
+                        <p className={'lead font-weight-bold'}> Price
                         </p>
                         <p>
-                            {item.supplierUrl}
+                            ${item.price}
+                        </p>
+
+                        <p>
+                            <a href={item.supplierUrl}> Supplier Url</a>
+
                         </p>
                     </div>
                 </div>
