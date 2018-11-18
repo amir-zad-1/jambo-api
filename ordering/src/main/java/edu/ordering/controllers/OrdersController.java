@@ -30,6 +30,12 @@ public class OrdersController {
         return orderService.getAll();
     }
 
+    @ResponseBody
+    @PostMapping("/")
+    public Order placeOrder( @RequestBody Order order) {
+        return    this.orderService.createOrder(order);
+    }
+
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST, produces = {"application/json"})
     public Order addProductToOrder(@RequestBody long idOrder, long idProduct, long quantity, float price) {
         Product product = new Product(idProduct, quantity, price);

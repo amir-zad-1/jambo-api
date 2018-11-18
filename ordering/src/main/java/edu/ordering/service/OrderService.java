@@ -47,6 +47,15 @@ public class OrderService {
         }
     }
 
+    public Order createOrder(Order order){
+        for (OrderItem oi:order.getOrderItems()) {
+            oi.setOrder(order);
+        }
+        
+        orderRepository.save(order);
+        return order;
+    }
+
     public boolean delete(Long orderId) {
         Order order = this.orderRepository.getOne(orderId);
         if (order != null) {
