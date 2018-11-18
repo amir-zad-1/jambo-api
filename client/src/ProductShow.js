@@ -82,7 +82,7 @@ class ProductShow extends Component {
                     <div className={"col-md-6"}>
                         {title}
 
-                        <p className={'lead font-weight-bold' }>
+                        <p className={'lead font-weight-bold'}>
                             Description
                         </p>
                         <p>
