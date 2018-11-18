@@ -70,7 +70,7 @@ class ProductList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/orders/new">Add Order</Button>
+                        <Button color="success" tag={Link} to="/products/new">Add Product</Button>
                     </div>
                     <h3>Jambo Products</h3>
                     <Table className="mt-4">
