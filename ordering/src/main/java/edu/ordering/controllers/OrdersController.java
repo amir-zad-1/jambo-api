@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 public class OrdersController {
@@ -15,8 +17,6 @@ public class OrdersController {
     @Autowired
     private OrderService orderService;
 
-    //@GetMapping("/order")
-//    @RequestMapping(value = "/order", method = RequestMethod.GET)
     @ResponseBody
     @GetMapping("/{orderId}")
     public Order getOrder(@PathVariable("orderId") long orderId) {
@@ -26,15 +26,8 @@ public class OrdersController {
 
 
     @GetMapping("/")
-    public String index(Model m) {
-        m.addAttribute("someAttribute", "someValue");
-        return "index";
-    }
-
-    @GetMapping("/account/login")
-    public String login(Model m) {
-        m.addAttribute("someAttribute", "someValue");
-        return "login";
+    public List<Order> index() {
+        return orderService.getAll();
     }
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST, produces = {"application/json"})
