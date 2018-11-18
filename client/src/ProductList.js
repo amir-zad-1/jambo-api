@@ -28,7 +28,7 @@ class ProductList extends Component {
     }
 
     async remove(id) {
-        await fetch(`/api/group/${id}`, {
+        await fetch(`/products/${id}`, {
             method: 'DELETE',
             headers: {
                 'X-XSRF-TOKEN': this.state.csrfToken,
@@ -54,10 +54,11 @@ class ProductList extends Component {
         const groupList = groups.map(group => {
             return <tr key={group.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{group.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{group.description}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.title}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.price}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/orders/" + group.id}>Show</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/products/" + group.id}>Show</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -76,7 +77,8 @@ class ProductList extends Component {
                         <thead>
                         <tr>
                             <th width="20%">Id</th>
-                            <th width="20%">Description</th>
+                            <th width="20%">Title</th>
+                            <th width="20%">Price</th>
                             <th width="10%">Actions</th>
                         </tr>
                         </thead>

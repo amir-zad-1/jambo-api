@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { instanceOf } from 'prop-types';
-import { Cookies, withCookies } from 'react-cookie';
+import {instanceOf} from 'prop-types';
+import {Cookies, withCookies} from 'react-cookie';
 
 class ProductShow extends Component {
     static propTypes = {
@@ -69,16 +69,35 @@ class ProductShow extends Component {
 
     render() {
         const {item} = this.state;
-        const title = <h2>Order {item.id}</h2>;
+        const title = <h2>Product # {item.id}</h2>;
 
         return <div>
             <AppNavbar/>
             <Container>
-                {title}
-                <br/>
-                <p>
-                    {item.description}
-                </p>
+                <div class="row">
+                    <div className={"col-md-6"}>
+                        <img src={item.imageUrl} alt="Smiley face" class="img-fluid"/>
+                    </div>
+
+                    <div className={"col-md-6"}>
+                        {title}
+                        <br/>
+                        <p>
+                            {item.description}
+                        </p>
+                        <p>
+
+                        </p>
+
+                        <p>
+                            {item.price}
+                        </p>
+                        <p>
+                            {item.supplierUrl}
+                        </p>
+                    </div>
+                </div>
+
 
             </Container>
         </div>
