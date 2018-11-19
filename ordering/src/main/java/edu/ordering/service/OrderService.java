@@ -1,6 +1,13 @@
 package edu.ordering.service;
 
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,11 +54,13 @@ public class OrderService {
         }
     }
 
-    public Order createOrder(Order order){
-        for (OrderItem oi:order.getOrderItems()) {
+    public Order createOrder(Order order) {
+        for (OrderItem oi : order.getOrderItems()) {
             oi.setOrder(order);
         }
-        
+        order.setStatus(OrderStatus.CREATED);
+        order.setDate(new Date());
+
         orderRepository.save(order);
         return order;
     }
@@ -64,6 +73,12 @@ public class OrderService {
         } else {
             return false;
         }
+    }
+
+    public Order cancelOrder(Order o) {
+        o.setStatus(OrderStatus.CANCELLED);
+        orderRepository.save(o);
+        return o;
     }
 
     public Order getOrderById(long orderId) {

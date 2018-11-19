@@ -1,6 +1,7 @@
 package edu.ordering.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class Order extends BaseModel {
 
     private String description;
-//    private List<Product> products;
+    //    private List<Product> products;
     private float subtotal;
     private float total;
 
@@ -25,6 +26,31 @@ public class Order extends BaseModel {
         this.orderItems = orderItems;
     }
 
+
+
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private java.util.Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+
+    @Column(name = "status")
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getDescription() {
         return description;

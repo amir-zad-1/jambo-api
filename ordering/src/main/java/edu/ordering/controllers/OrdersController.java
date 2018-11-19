@@ -46,4 +46,12 @@ public class OrdersController {
         return order;
     }
 
+    @ResponseBody
+    @GetMapping("/{orderId}/cancel")
+    public Order cancelOrder(@PathVariable("orderId") long orderId) {
+
+        Order o = orderService.getOrderById(orderId);
+        return orderService.cancelOrder(o);
+    }
+
 }
