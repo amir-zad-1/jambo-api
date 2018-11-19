@@ -42,6 +42,24 @@ class OrderList extends Component {
         });
     }
 
+    async cancel(id) {
+        await fetch(`/orders/${id}/cancel`, {
+            method: 'GET',
+            headers: {
+                'X-XSRF-TOKEN': this.state.csrfToken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        }).then(() => {
+            fetch('/orders/')
+                .then(response => response.json())
+                .then(data => this.setState({groups: data, isLoading: false}))
+                .then(()=> console.log("is loading: "))
+                .catch(() => this.props.history.push('/'));
+        });
+    }
+
     render() {
         console.log("rendering order list")
         const {groups, isLoading} = this.state;
@@ -54,11 +72,13 @@ class OrderList extends Component {
         const groupList = groups.map(group => {
             return <tr key={group.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{group.id}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{group.description}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.date}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.total}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.status}</td>
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/orders/" + group.id}>Show</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>Delete</Button>
+                        <Button size="sm" color="danger" onClick={() => this.cancel(group.id)}>Cancel</Button>
                     </ButtonGroup>
                 </td>
             </tr>
@@ -76,7 +96,9 @@ class OrderList extends Component {
                         <thead>
                         <tr>
                             <th width="20%">Id</th>
-                            <th width="20%">Description</th>
+                            <th width="20%">Date</th>
+                            <th width="20%">Total</th>
+                            <th width="20%">Status</th>
                             <th width="10%">Actions</th>
                         </tr>
                         </thead>
