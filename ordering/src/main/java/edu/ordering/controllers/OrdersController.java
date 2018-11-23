@@ -1,7 +1,9 @@
 package edu.ordering.controllers;
 
 import edu.ordering.models.Order;
+import edu.ordering.models.OrderItem;
 import edu.ordering.models.Product;
+import edu.ordering.service.OrderItemService;
 import edu.ordering.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ public class OrdersController {
 
     @Autowired
     private OrderService orderService;
-
+    private OrderItemService orderItemService;
     @ResponseBody
     @GetMapping("/{orderId}")
     public Order getOrder(@PathVariable("orderId") long orderId) {
@@ -53,5 +55,32 @@ public class OrdersController {
         Order o = orderService.getOrderById(orderId);
         return orderService.cancelOrder(o);
     }
-
+    @ResponseBody
+    @PostMapping("/addOrderItem")
+    public Order addOrderItem(@RequestBody long orderId, long orderItemId, int quantity, double price) {
+    	Order order = this.getOrder(orderId);
+    	if(order  != null) {
+    		OrderItem orderItem =  this.orderItemService.getOrderItemById(orderItemId);
+    		if(orderItem != null) {
+    			orderItem.setPrice(price);
+    			orderItem.setQuantity(quantity);
+    		}else {
+    			orderItem = new OrderItem();
+    			orderItem.setPrice(price);
+    			orderItem.setId(orderItemId);
+    			orderItem.setQuantity(quantity);
+    		}
+    		order.addOrderItem(orderItem);
+    	}
+    	return order;
+    }
+    @ResponseBody
+    @PostMapping("/addItems")
+    public Order addOrderItemList(@RequestBody long orderId,List<OrderItem> orderItems) {
+    	Order order = this.getOrder(orderId);
+    	if(order != null) {
+    		order.setOrderItems(orderItems);
+    	}
+    	return order;
+    }
 }

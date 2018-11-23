@@ -63,5 +63,7 @@ public class OrderItem extends BaseModel {
         this.order = order;
     }
 
-
+    public boolean isValid() {
+    	return (this.price > 0.0 && this.quantity >= 0);
+    }
 }
