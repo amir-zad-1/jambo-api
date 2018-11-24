@@ -1,45 +1,57 @@
 package edu.ordering.controllers;
 
 import edu.ordering.models.Order;
-
+import edu.ordering.models.Product;
+import edu.ordering.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
 public class OrdersController {
 
+    @Autowired
+    private OrderService orderService;
 
-    //@GetMapping("/order")
-   @RequestMapping("/order")
-    public Order getOrder(@RequestParam(value = "id",required = false,
-            defaultValue = "0") Integer id) {
-        Order p = new Order(1,"oder");
-        return p;
+    @ResponseBody
+    @GetMapping("/{orderId}")
+    public Order getOrder(@PathVariable("orderId") long orderId) {
+        Order o = orderService.getOrderById(orderId);
+        return o;
     }
 
 
     @GetMapping("/")
-    public String index(Model m) {
-        m.addAttribute("someAttribute", "someValue");
-        return "index";
+    public List<Order> index() {
+        return orderService.getAll();
     }
 
-    @GetMapping("/account/login")
-    public String login(Model m) {
-        m.addAttribute("someAttribute", "someValue");
-        return "login";
+    @ResponseBody
+    @PostMapping("/")
+    public Order placeOrder( @RequestBody Order order) {
+        return    this.orderService.createOrder(order);
     }
 
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST, produces = {"application/json"})
+    public Order addProductToOrder(@RequestBody long idOrder, long idProduct, long quantity, float price) {
+        Product product = new Product(idProduct, quantity, price);
+        Order order = this.orderService.getOrderById(idOrder);
+        if (order != null) {
+            this.orderService.addProduct(order, product);
+        }
+        return order;
+    }
+
+    @ResponseBody
+    @GetMapping("/{orderId}/cancel")
+    public Order cancelOrder(@PathVariable("orderId") long orderId) {
+
+        Order o = orderService.getOrderById(orderId);
+        return orderService.cancelOrder(o);
+    }
 
 }
