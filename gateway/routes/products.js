@@ -4,7 +4,7 @@ const axios = require('axios');
 
 const utility = require('../utility/utility');
 
-const API_BASE_URL = "http://localhost:8081/";
+const API_BASE_URL = "http://product-api:8080/";
 const API_PRODUCT_SERVICE_ENDPOINT = API_BASE_URL + "products";
 
 router.get('/', (request, response) => {

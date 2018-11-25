@@ -13,6 +13,17 @@ This is a SOEN-6841 Project for the the Tam Jambo.
 6. Samaneh Shirdel--------------------------40075615
 
 
+###  Build Docker image
+~~~
+docker build -t gateway-api .
+~~~
+
+###  Start the app in a container
+~~~
+docker run -p 3001:3001 gateway-api  gateway-api
+~~~
+
+
 ### Getting started.
 1. Install Nodejs
 2. Install npm
