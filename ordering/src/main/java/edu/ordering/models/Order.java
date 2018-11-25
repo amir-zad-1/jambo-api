@@ -87,7 +87,10 @@ public class Order extends BaseModel {
     public void setTotal(float total) {
         this.total = total;
     }
-
+    
+    public void addOrderItem(OrderItem orderItem) {
+    	this.orderItems.add(orderItem);
+    }
     public void addProduct(Product product) {
 //        this.products.add(product);
     }
