@@ -4,6 +4,9 @@ docker run --name=order-db --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWOR
 docker run -p 6603:3306 --name=order-db --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" --env="MYSQL_DATABASE=ordering" mysql:5.7
 docker run -p 3306:3306 --name=order-db --env="MYSQL_ROOT_PASSWORD=root" --env="MYSQL_PASSWORD=root" --env="MYSQL_DATABASE=ordering" mysql:5.7
 
+to build the project and generate the war file
+`mvn clean install`
+
 # import db
 mysql -horder-db  -uroot -proot ordering < scripts/dump.sql
 
