@@ -15,9 +15,12 @@ router.get('/', (request, response) => {
 });
 
 router.get('/:id', (request, response) => {
-    const id = request.params.id;
-    const output = {};
-    response.json(output);
+    const orderId = request.params.id;
+    axios.get(API_ORDER_SERVICE_ENDPOINT + "/" + orderId).then(getResponse => {
+        return response.send(getResponse.data);
+    }).catch(error => {
+        return utility.handleError(response, error);
+    });
 });
 
 router.post('/', (request, response) => {
@@ -27,10 +30,13 @@ router.post('/', (request, response) => {
     response.json(output);
 });
 
-router.post('/:id/cancel', (request, response) => {
-    const id = request.params.id;
-    const output = {};
-    response.json(output);
+router.get('/:id/cancel', (request, response) => {
+    const orderId = request.params.id;
+    axios.get(API_ORDER_SERVICE_ENDPOINT + "/" + orderId + "/cancel").then(getResponse => {
+        return response.send(getResponse.data);
+    }).catch(error => {
+        return utility.handleError(response, error);
+    });
 });
 
 module.exports = router;
