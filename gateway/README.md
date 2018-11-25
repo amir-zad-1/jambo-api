@@ -20,7 +20,8 @@ docker build -t gateway-api .
 
 ###  Start the app in a container
 ~~~
-docker run -p 3001:3001 gateway-api  gateway-api
+docker run -p 3001:3001 --name gateway-api  gateway-api
+docker run -p 3001:3001 --link product-api:product-api --link order-api:order-api  --name gateway-api  gateway-api
 ~~~
 
 

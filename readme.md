@@ -22,7 +22,7 @@ Note: Requires node.js to be installed.
 ~~~~
 
 #### 2. Run the Ordering Service
-Not Specified yet.
+See the instructions inside the ordering folder
 
 #### 3. Run the code below
 ~~~~
