@@ -29,18 +29,29 @@ FLUSH PRIVILEGES
 ;
 
 
-# Dump of table addresses
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `addresses`;
 
 CREATE TABLE `addresses` (
   `id` bigint(255) NOT NULL AUTO_INCREMENT,
   `city` varchar(10) NOT NULL,
   `postalCode` varchar(10) NOT NULL,
+  `country` varchar(200) DEFAULT NULL,
+  `addressLine1` varchar(200) DEFAULT NULL,
+  `addressLine2` varchar(200) DEFAULT NULL,
+  `province` varchar(60) DEFAULT NULL,
   UNIQUE KEY `unique_id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `addresses` WRITE;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+
+INSERT INTO `addresses` (`id`, `city`, `postalCode`, `country`, `addressLine1`, `addressLine2`, `province`)
+VALUES
+	(1,'Montreal','H2F3Z7','Canada','2343 Rue Guy',NULL,'QC'),
+	(2,'Montreal','H2F3Z7','Canada','2346 Rue Guy',NULL,'QC');
+
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table order_items
@@ -66,7 +77,12 @@ VALUES
 	(1,1,1,2,4.00,''),
 	(2,1,2,3,5.23,''),
 	(3,12,1,2,4.00,'0'),
-	(4,13,1,2,4.00,'0');
+	(4,13,1,2,4.00,'Sony Play Station'),
+	(5,14,1,2,4.00,'Sony TV'),
+	(6,15,1,2,4.00,'Sony TV'),
+	(7,16,1,2,4.00,'Sony TV'),
+	(9,18,1,2,4.00,'Sony TV'),
+	(10,19,1,2,4.00,'Sony TV');
 
 /*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -84,6 +100,9 @@ CREATE TABLE `orders` (
   `subtotal` decimal(10,2) NOT NULL,
   `status` varchar(40) DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `customerId` int(11) DEFAULT NULL,
+  `customerName` varchar(100) DEFAULT NULL,
+  `addressId` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -91,15 +110,19 @@ CREATE TABLE `orders` (
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 
-INSERT INTO `orders` (`id`, `total`, `description`, `subtotal`, `status`, `date`)
+INSERT INTO `orders` (`id`, `total`, `description`, `subtotal`, `status`, `date`, `customerId`, `customerName`, `addressId`)
 VALUES
-	(1,0.00,'This is my order',0.00,'cancelled',NULL),
-	(2,0.00,'This is my order',0.00,'cancelled',NULL),
-	(3,0.00,'This is my order',0.00,'cancelled',NULL),
-	(4,0.00,'This is my order',0.00,'cancelled',NULL),
-	(5,0.00,'This is my order',0.00,'cancelled',NULL),
-	(12,0.00,'This is my order',0.00,'cancelled',NULL),
-	(13,0.00,'This is my order',0.00,'cancelled','2018-11-19');
+	(1,0.00,'This is my order',0.00,'cancelled',NULL,1,'John Doe',1),
+	(2,0.00,'This is my order',0.00,'cancelled',NULL,2,'John Doe',1),
+	(3,0.00,'This is my order',0.00,'cancelled',NULL,2,'John Doe',1),
+	(4,0.00,'This is my order',0.00,'cancelled',NULL,2,'John Doe',1),
+	(5,0.00,'This is my order',0.00,'cancelled',NULL,2,'John Doe',1),
+	(12,0.00,'This is my order',0.00,'cancelled',NULL,2,'John Doe',1),
+	(13,0.00,'This is my order',0.00,'cancelled','2018-11-19',2,'John Doe',1),
+	(14,0.00,'This is my order',0.00,'cancelled','2018-11-25',2,'Bony Nony',1),
+	(15,8.00,'This is my order',0.00,'created','2018-11-25',2,'Bony Nony',1),
+	(18,8.00,'This is my order',0.00,'cancelled','2018-11-25',2,'Bony Nony',1),
+	(19,8.00,'This is my order',0.00,'created','2018-11-25',2,'Bony Nony',2);
 
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
