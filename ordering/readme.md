@@ -19,7 +19,7 @@ Run ordering service
 
 `docker run -d  -p 8080:8080  --name ordering ordering-service`
 
-`docker run -d  --link order-db:order-db -p 8080:8080  --name ordering ordering-service` 
+`docker run -d  --link order-db:order-db -p 8080:8080  --name order-api ordering-service` 
 --link order-db:order-db
 
 client - 8080

@@ -24,10 +24,13 @@ router.get('/:id', (request, response) => {
 });
 
 router.post('/', (request, response) => {
-    const output = {};
-    console.log(request.body);
-    response.status(201);
-    response.json(output);
+    const postData = request.body;
+    axios.post(API_ORDER_SERVICE_ENDPOINT + "/", postData).then(postResponse => {
+        return response.status(201).send(postResponse.data);
+    }).catch(error => {
+        return utility.handleError(response, error);
+    });
+
 });
 
 router.get('/:id/cancel', (request, response) => {

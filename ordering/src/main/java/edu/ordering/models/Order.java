@@ -26,7 +26,7 @@ public class Order extends BaseModel {
     }
 
     @ManyToOne
-    @JoinColumn(name = "addressId", nullable = false)
+    @JoinColumn(name = "addressId", insertable=false, updatable=false)
     private Address address;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -40,6 +40,16 @@ public class Order extends BaseModel {
         this.orderItems = orderItems;
     }
 
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    @Column(name = "addressId")
+    private Long addressId;
 
 
     @Column(name = "date")
