@@ -1,5 +1,7 @@
 package edu.ordering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +16,18 @@ public class Order extends BaseModel {
     private float subtotal;
     private float total;
 
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "addressId", nullable = false)
+    private Address address;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
@@ -51,6 +65,28 @@ public class Order extends BaseModel {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    @Column(name = "customerId")
+    private String customerId;
+
+    @Column(name = "customerName")
+    private String customerName;
 
     public String getDescription() {
         return description;
