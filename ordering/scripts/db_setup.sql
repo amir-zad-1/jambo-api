@@ -2,7 +2,7 @@
 mysql -u root -p
 
 # create user
-CREATE USER 'orderinguser'@'localhost' IDENTIFIED BY 'orderorder';
+CREATE USER 'orderinguser'@'%' IDENTIFIED BY 'orderorder';
 
 # create databse
 ;
@@ -11,6 +11,7 @@ CREATE DATABASE ordering;
 
 # permissions
 ;
-GRANT ALL PRIVILEGES ON ordering.* TO 'orderinguser'@'localhost';
+GRANT ALL PRIVILEGES ON ordering.* TO 'orderinguser'@'%';
 ;
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES
+;

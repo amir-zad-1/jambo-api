@@ -55,9 +55,12 @@ public class OrderService {
     }
 
     public Order createOrder(Order order) {
+        float tot = 0;
         for (OrderItem oi : order.getOrderItems()) {
             oi.setOrder(order);
+            tot += oi.getPrice()*oi.getQuantity();
         }
+        order.setTotal(tot);
         order.setStatus(OrderStatus.CREATED);
         order.setDate(new Date());
 

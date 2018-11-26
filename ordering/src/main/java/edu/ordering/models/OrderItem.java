@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class OrderItem extends BaseModel {
 
     private long productId;
-    private long productName;
+    private String productName;
     private int quantity;
     private Double price;
 
@@ -31,11 +31,11 @@ public class OrderItem extends BaseModel {
         this.productId = productId;
     }
 
-    public long getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProductName(long productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 

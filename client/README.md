@@ -1,3 +1,13 @@
+### build docker image
+
+`docker build -t jambo-client .`
+
+### run docker container
+
+```
+docker run -d --link gateway-api:gateway-api  -p 3000:3000 jambo-client
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

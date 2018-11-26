@@ -72,8 +72,9 @@ class OrderList extends Component {
         const groupList = groups.map(group => {
             return <tr key={group.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{group.id}</td>
+                <td style={{whiteSpace: 'nowrap'}}>{group.customerName}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{group.date}</td>
-                <td style={{whiteSpace: 'nowrap'}}>{group.total}</td>
+                <td style={{whiteSpace: 'nowrap'}}>${group.total.toFixed(2)}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{group.status}</td>
                 <td>
                     <ButtonGroup>
@@ -88,7 +89,7 @@ class OrderList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
+                    <div className="float-right mt-2">
                         <Button color="success" tag={Link} to="/orders/new">Add Order</Button>
                     </div>
                     <h3>Jambo Orders</h3>
@@ -96,6 +97,7 @@ class OrderList extends Component {
                         <thead>
                         <tr>
                             <th width="20%">Id</th>
+                            <th width="20%">Customer</th>
                             <th width="20%">Date</th>
                             <th width="20%">Total</th>
                             <th width="20%">Status</th>

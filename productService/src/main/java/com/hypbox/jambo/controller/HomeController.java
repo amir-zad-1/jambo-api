@@ -16,7 +16,7 @@ public class HomeController {
     @GetMapping("")
     @ResponseBody
     public HomeDto getHome() {
-        HomeDto response = new HomeDto("Volcano RESTful API 0.1.0");
+        HomeDto response = new HomeDto("Jambo Product RESTful API 0.1.0");
         return response;
     }
 
