@@ -89,7 +89,7 @@ class OrderList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
+                    <div className="float-right mt-2">
                         <Button color="success" tag={Link} to="/orders/new">Add Order</Button>
                     </div>
                     <h3>Jambo Orders</h3>

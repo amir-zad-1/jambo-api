@@ -69,7 +69,7 @@ class ProductList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
+                    <div className="float-right mt-2">
                         <Button color="success" tag={Link} to="/products/new">Add Product</Button>
                     </div>
                     <h3>Jambo Products</h3>
