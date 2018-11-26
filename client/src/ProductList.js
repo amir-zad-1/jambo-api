@@ -53,6 +53,7 @@ class ProductList extends Component {
 
         const groupList = groups.map(group => {
             return <tr key={group.id}>
+                <td style={{whiteSpace: 'nowrap'}}><img style={{maxWidth: '100px'}} src={group.imageUrl} alt=""/></td>
                 <td style={{whiteSpace: 'nowrap'}}>{group.id}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{group.title}</td>
                 <td style={{whiteSpace: 'nowrap'}}>{group.price}</td>
@@ -72,10 +73,12 @@ class ProductList extends Component {
                     <div className="float-right mt-2">
                         <Button color="success" tag={Link} to="/products/new">Add Product</Button>
                     </div>
-                    <h3>Jambo Products</h3>
+                    <br/>
+                    <h2>Jambo Products</h2>
                     <Table className="mt-4">
                         <thead>
                         <tr>
+                            <th width="20%">Image</th>
                             <th width="20%">Id</th>
                             <th width="20%">Title</th>
                             <th width="20%">Price</th>

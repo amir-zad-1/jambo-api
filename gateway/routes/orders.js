@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
+const utility = require('../utility/utility');
+
 const API_ORDER_BASE_URL = "http://order-api:8080/ordering/";
 const API_ORDER_SERVICE_ENDPOINT = API_ORDER_BASE_URL + "orders";
 

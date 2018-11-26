@@ -99,7 +99,7 @@ class ProductShow extends Component {
                         </p>
 
                         <p>
-                            <a href={item.supplierUrl}> Supplier Url</a>
+                            <a target={'_blank'} href={item.supplierUrl}> Supplier Url</a>
 
                         </p>
                     </div>
